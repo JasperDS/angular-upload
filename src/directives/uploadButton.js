@@ -5,6 +5,7 @@ angular.module('lr.upload.directives').directive('uploadButton', function(upload
     restrict: 'EA',
     scope: {
       data: '=?data',
+      accept: '=',
       url: '@',
       id: '@',
       param: '@',
@@ -66,10 +67,8 @@ angular.module('lr.upload.directives').directive('uploadButton', function(upload
         });
       }
 
-      if ('accept' in attr) {
-        attr.$observe('accept', function uploadButtonAcceptObserve(value) {
-          fileInput.attr('accept', value);
-        });
+      if (scope.accept) {
+        fileInput.attr('accept', scope.accept);
       }
 
       if (upload.support.formData) {
